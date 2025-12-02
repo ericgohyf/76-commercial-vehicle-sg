@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>76 Commercial Vehicle Singapore — Used Commercial Vehicles</title>
+  <meta name="description" content="76 Commercial Vehicle Singapore - trusted seller of used vans, lorries, pickups and electric commercial vehicles in Singapore. View inventory, financing, warranty and contact us." />
+  <meta name="author" content="76 Commercial Vehicle Singapore" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <style>
+    :root{--accent:#0b6e4f;--muted:#6b7280;--card:#ffffff;--bg:#f7faf9}
+    *{box-sizing:border-box}
+    body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:#0f172a; background:var(--bg)}
+    a{color:var(--accent); text-decoration:none}
+    header{background:white; box-shadow:0 2px 6px rgba(2,6,23,0.06); position:sticky; top:0; z-index:50}
+    .container{max-width:1100px; margin:0 auto; padding:1rem}
+    .nav{display:flex; align-items:center; justify-content:space-between}
+    .brand{display:flex; align-items:center; gap:.75rem}
+    .logo{width:46px; height:46px; background:linear-gradient(135deg,#0b6e4f,#14b78b); color:white; display:flex; align-items:center; justify-content:center; border-radius:8px; font-weight:700}
+    nav ul{display:flex; gap:1rem; list-style:none; margin:0; padding:0}
+    .cta{background:var(--accent); color:white; padding:.5rem .85rem; border-radius:8px}
+
+    /* Hero */
+    .hero{padding:2.25rem 0; display:grid; grid-template-columns:1fr 420px; gap:1.25rem; align-items:center}
+    .hero-left h1{font-size:2rem; margin:0 0 .5rem}
+    .hero-left p{color:var(--muted); margin:0 0 1rem}
+    .hero-actions{display:flex; gap:.75rem}
+    .search-bar{display:flex; gap:.5rem; margin-top:1rem}
+    .search-bar input, .search-bar select{padding:.6rem .75rem; border:1px solid #e6e9ef; border-radius:8px}
+
+    .card{background:var(--card); border-radius:12px; padding:1rem; box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+
+    /* Inventory */
+    .filters{display:flex; gap:.5rem; margin-bottom:1rem; flex-wrap:wrap}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+    .vehicle{display:flex; flex-direction:column; gap:.6rem}
+    .vehicle img{width:100%; height:170px; object-fit:cover; border-radius:8px}
+    .vehicle h3{margin:.25rem 0 0; font-size:1rem}
+    .vehicle .meta{color:var(--muted); font-size:.9rem}
+    .vehicle .price{font-weight:700; color:#0b6e4f}
+    .vehicle .actions{display:flex; gap:.5rem; margin-top:.5rem}
+    .btn{padding:.45rem .6rem; border-radius:8px; border:1px solid #e6e9ef; background:#fff}
+
+    /* About / Contact */
+    .two-col{display:grid; grid-template-columns:1fr 340px; gap:1rem}
+
+    footer{padding:1.5rem 0; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)} .hero{grid-template-columns:1fr} .two-col{grid-template-columns:1fr} }
+    @media (max-width:640px){.grid{grid-template-columns:1fr} nav ul{display:none} .hero-left h1{font-size:1.6rem}}
+
+    /* modal */
+    .modal-backdrop{position:fixed; inset:0; background:rgba(2,6,23,0.45); display:none; align-items:center; justify-content:center; z-index:100}
+    .modal{width:92%; max-width:900px; border-radius:12px; overflow:hidden}
+    .modal .gallery{display:grid; grid-template-columns:1fr 320px}
+    .gallery img{width:100%; height:320px; object-fit:cover}
+    .specs{padding:1rem}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .badge{padding:.25rem .5rem; background:#eef7f3; color:var(--accent); border-radius:6px; font-weight:600}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">76</div>
+        <div>
+          <div style="font-weight:700">76 Commercial Vehicle</div>
+          <div class="muted" style="font-size:.85rem">Singapore — Used commercial vehicles</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#inventory">Inventory</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div style="display:flex; gap:.5rem; align-items:center">
+        <a class="cta" href="#contact">WhatsApp Us</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Trusted used commercial vehicles in Singapore</h1>
+        <p>Quality vans, lorries, pickups and EV commercial vehicles. LTA-compliant, inspected and ready for fleet or business use.</p>
+        <div class="hero-actions">
+          <a class="cta" href="#inventory">View Inventory</a>
+          <a class="btn" href="#contact">Request Appraisal</a>
+        </div>
+
+        <div class="search-bar" style="align-items:center">
+          <input id="searchText" placeholder="Search model, brand, year, keyword..." />
+          <select id="filterCategory">
+            <option value="all">All types</option>
+            <option>Van</option>
+            <option>Truck</option>
+            <option>Pickup</option>
+            <option>EV</option>
+          </select>
+          <button class="btn" id="searchBtn">Search</button>
+        </div>
+
+        <div style="margin-top:1rem; display:flex; gap:.5rem; align-items:center">
+          <div class="badge">LTA-Approved</div>
+          <div class="muted" style="font-size:.9rem">Inspection & warranty available</div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin-top:0">Featured</h3>
+          <div style="display:flex; gap:.6rem; flex-direction:column">
+            <div style="display:flex; gap:.6rem; align-items:center">
+              <img src="https://picsum.photos/seed/byd/120/80" width="120" height="80" style="border-radius:6px; object-fit:cover" />
+              <div>
+                <div style="font-weight:700">BYD eT3</div>
+                <div class="muted">Full EV • 2023 • 38,000 km</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:.6rem; align-items:center">
+              <img src="https://picsum.photos/seed/maxus/120/80" width="120" height="80" style="border-radius:6px; object-fit:cover" />
+              <div>
+                <div style="font-weight:700">Maxus ED5</div>
+                <div class="muted">Electric • 2022 • 45,000 km</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="inventory" style="margin-top:1.6rem">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.8rem">
+        <h2 style="margin:0">Available Inventory</h2>
+        <div class="muted">Showing <span id="count">0</span> vehicles</div>
+      </div>
+
+      <div class="card">
+        <div class="filters">
+          <select id="filterType"><option value="all">All types</option><option>Van</option><option>Truck</option><option>Pickup</option><option>EV</option></select>
+          <select id="filterBrand"><option value="all">All brands</option></select>
+          <select id="sortBy"><option value="new">Newest</option><option value="price_low">Price: Low to High</option><option value="price_high">Price: High to Low</option></select>
+          <input id="priceMin" placeholder="Min price (SGD)" style="width:140px; padding:.5rem; border:1px solid #e6e9ef; border-radius:8px" />
+          <input id="priceMax" placeholder="Max price (SGD)" style="width:140px; padding:.5rem; border:1px solid #e6e9ef; border-radius:8px" />
+          <button class="btn" id="clearFilters">Clear</button>
+        </div>
+
+        <div class="grid" id="inventoryGrid">
+          <!-- vehicles render here -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about" style="margin-top:1.6rem">
+      <div class="two-col">
+        <div class="card">
+          <h2 style="margin-top:0">About 76 Commercial Vehicle Singapore</h2>
+          <p>76 Commercial Vehicle Singapore is a trusted dealer specialising in used commercial vans, lorries, pickups, and electric commercial vehicles (EVs). We provide transparent pricing, LTA-compliant inspections and assistance with financing and insurance to help your business move faster.</p>
+
+          <h3>Our services</h3>
+          <ul>
+            <li>Inspection & Certification</li>
+            <li>Trade-in & Purchase</li>
+            <li>Financing & Insurance Assistance</li>
+            <li>After-sales service & warranty</li>
+          </ul>
+
+          <h3>Why choose us</h3>
+          <ul>
+            <li>Competitive prices and clear paperwork</li>
+            <li>Experienced in commercial fleet sales</li>
+            <li>Fast response and WhatsApp-based communication</li>
+          </ul>
+        </div>
+
+        <aside class="card">
+          <h3 style="margin-top:0">Contact & Location</h3>
+          <p class="muted">We are based in Singapore. Call or WhatsApp us to arrange viewing.</p>
+          <p style="margin:.5rem 0"><strong>Phone:</strong> <a href="tel:+65-9123-4567">+65 9123 4567</a></p>
+          <p style="margin:.5rem 0"><strong>WhatsApp:</strong> <a href="https://wa.me/6591234567?text=Hi%20I%27m%20interested%20in%20your%20vehicles">Chat on WhatsApp</a></p>
+          <p style="margin:.5rem 0"><strong>Email:</strong> <a href="mailto:sales@76cv.sg">sales@76cv.sg</a></p>
+          <div style="margin-top:1rem">
+            <iframe title="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.000000000002!2d103.8198!3d1.3521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da123456789abc%3A0xdeadbeef!2sSingapore!5e0!3m2!1sen!2ssg!4v1234567890" width="100%" height="180" style="border:0; border-radius:8px" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:1.6rem">
+      <div class="card">
+        <h2 style="margin-top:0">Contact Us</h2>
+        <form id="contactForm">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem">
+            <input id="name" placeholder="Your name" required style="padding:.6rem; border:1px solid #e6e9ef; border-radius:8px" />
+            <input id="phone" placeholder="Phone / WhatsApp" required style="padding:.6rem; border:1px solid #e6e9ef; border-radius:8px" />
+          </div>
+          <input id="emailField" placeholder="Email (optional)" style="margin-top:.6rem; padding:.6rem; border:1px solid #e6e9ef; border-radius:8px" />
+          <textarea id="message" placeholder="Message" style="margin-top:.6rem; padding:.6rem; border:1px solid #e6e9ef; border-radius:8px; min-height:120px"></textarea>
+          <div style="margin-top:.6rem; display:flex; gap:.6rem; align-items:center">
+            <button class="cta" type="submit">Send Message</button>
+            <button class="btn" type="button" onclick="location.href='https://wa.me/6591234567?text=Hi%20I%27m%20interested%20in%20your%20vehicles'">Chat on WhatsApp</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap">
+      <div>© 2025 76 Commercial Vehicle Singapore</div>
+      <div class="muted">Trading as 76 Commercial Vehicle — LTA-compliant sales. <a href="#contact">Contact us</a></div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-backdrop">
+    <div class="modal card">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:0.6rem 1rem; border-bottom:1px solid #eef2f5">
+        <div style="font-weight:700" id="modalTitle">Vehicle</div>
+        <button onclick="closeModal()" class="btn">Close</button>
+      </div>
+      <div class="gallery">
+        <div style="padding:1rem">
+          <img id="modalImg" src="https://picsum.photos/seed/vehicle/900/420" alt="vehicle" />
+        </div>
+        <div class="specs">
+          <h3 id="modalModel">Model</h3>
+          <div id="modalPrice" style="font-weight:700;color:var(--accent); margin-bottom:.6rem">$0</div>
+          <div class="muted" id="modalMeta">Year • Mileage • Fuel</div>
+          <p id="modalDesc" style="margin-top:.6rem">Description</p>
+          <div style="margin-top:1rem; display:flex; gap:.5rem">
+            <a id="whatsappLink" class="cta" target="_blank">WhatsApp</a>
+            <a id="enquireMail" class="btn" href="#contact">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sample inventory data (replace with real images & details)
+    const vehicles = [
+      {id:1, brand:'BYD', model:'eT3', type:'EV', year:2023, price:54000, mileage:38000, fuel:'Electric', img:'https://picsum.photos/seed/byd/800/420', coe:'2032-05'},
+      {id:2, brand:'Maxus', model:'ED5', type:'EV', year:2022, price:48000, mileage:45000, fuel:'Electric', img:'https://picsum.photos/seed/maxus/800/420', coe:'2030-11'},
+      {id:3, brand:'Toyota', model:'Hiace', type:'Van', year:2018, price:32000, mileage:120000, fuel:'Diesel', img:'https://picsum.photos/seed/hiace/800/420', coe:'2028-07'},
+      {id:4, brand:'Nissan', model:'NV200', type:'Van', year:2019, price:28000, mileage:98000, fuel:'Petrol', img:'https://picsum.photos/seed/nv200/800/420', coe:'2029-03'},
+      {id:5, brand:'Opel', model:'Vivaro-e', type:'EV', year:2021, price:46000, mileage:60000, fuel:'Electric', img:'https://picsum.photos/seed/vivaro/800/420', coe:'2031-09'},
+      {id:6, brand:'Mitsubishi', model:'Fuso', type:'Truck', year:2016, price:42000, mileage:180000, fuel:'Diesel', img:'https://picsum.photos/seed/fuso/800/420', coe:'2026-12'},
+      {id:7, brand:'Isuzu', model:'NPR', type:'Truck', year:2017, price:39000, mileage:160000, fuel:'Diesel', img:'https://picsum.photos/seed/isuzu/800/420', coe:'2027-04'}
+    ];
+
+    // Populate brand filter
+    const brandSelect = document.getElementById('filterBrand');
+    const brands = Array.from(new Set(vehicles.map(v=>v.brand))).sort();
+    brands.forEach(b=>{ const o=document.createElement('option'); o.value=b; o.textContent=b; brandSelect.appendChild(o) });
+
+    const inventoryGrid = document.getElementById('inventoryGrid');
+    const count = document.getElementById('count');
+
+    function renderList(list){
+      inventoryGrid.innerHTML='';
+      list.forEach(v=>{
+        const card=document.createElement('div'); card.className='vehicle card';
+        card.innerHTML = `
+          <img src="${v.img}" alt="${v.model}" />
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center">
+              <h3>${v.brand} ${v.model}</h3>
+              <div class="price">S$${numberWithCommas(v.price)}</div>
+            </div>
+            <div class="meta">${v.year} • ${numberWithCommas(v.mileage)} km • ${v.fuel} • ${v.type}</div>
+            <div class="actions">
+              <button class="btn" onclick="openModal(${v.id})">View</button>
+              <a class="btn" href="https://wa.me/6591234567?text=Hi%20I%27m%20interested%20in%20the%20${encodeURIComponent(v.brand+' '+v.model)}%20(${v.id})" target="_blank">WhatsApp</a>
+            </div>
+          </div>
+        `;
+        inventoryGrid.appendChild(card);
+      });
+      count.textContent = list.length;
+    }
+
+    function numberWithCommas(x){ return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }
+
+    // Initial render
+    renderList(vehicles);
+
+    // Filters
+    document.getElementById('filterType').addEventListener('change', applyFilters);
+    document.getElementById('filterBrand').addEventListener('change', applyFilters);
+    document.getElementById('sortBy').addEventListener('change', applyFilters);
+    document.getElementById('searchBtn').addEventListener('click', applyFilters);
+    document.getElementById('clearFilters').addEventListener('click', ()=>{
+      document.getElementById('filterType').value='all';
+      document.getElementById('filterBrand').value='all';
+      document.getElementById('sortBy').value='new';
+      document.getElementById('priceMin').value='';
+      document.getElementById('priceMax').value='';
+      document.getElementById('searchText').value='';
+      renderList(vehicles);
+    });
+
+    function applyFilters(){
+      let list = vehicles.slice();
+      const type = document.getElementById('filterType').value;
+      const brand = document.getElementById('filterBrand').value;
+      const sort = document.getElementById('sortBy').value;
+      const search = document.getElementById('searchText').value.trim().toLowerCase();
+      const minP = parseInt(document.getElementById('priceMin').value) || 0;
+      const maxP = parseInt(document.getElementById('priceMax').value) || Infinity;
+
+      if(type !== 'all') list = list.filter(v=>v.type === type);
+      if(brand !== 'all') list = list.filter(v=>v.brand === brand);
+      if(search) list = list.filter(v=> (v.brand+' '+v.model+' '+v.year+' '+v.fuel).toLowerCase().includes(search) );
+      list = list.filter(v=> v.price >= minP && v.price <= maxP);
+
+      if(sort === 'price_low') list.sort((a,b)=>a.price-b.price);
+      else if(sort === 'price_high') list.sort((a,b)=>b.price-a.price);
+      else list.sort((a,b)=>b.year - a.year);
+
+      renderList(list);
+    }
+
+    // Modal logic
+    function openModal(id){
+      const v = vehicles.find(x=>x.id===id);
+      if(!v) return;
+      document.getElementById('modalTitle').textContent = `${v.brand} ${v.model}`;
+      document.getElementById('modalImg').src = v.img;
+      document.getElementById('modalModel').textContent = `${v.brand} ${v.model}`;
+      document.getElementById('modalPrice').textContent = `S$${numberWithCommas(v.price)}`;
+      document.getElementById('modalMeta').textContent = `${v.year} • ${numberWithCommas(v.mileage)} km • ${v.fuel} • ${v.type}`;
+      document.getElementById('modalDesc').textContent = `Well-maintained ${v.type.toLowerCase()} — ${v.brand} ${v.model} (${v.year}). COE expiry: ${v.coe}. Contact us for inspection, warranty and fleet purchase.`;
+      document.getElementById('whatsappLink').href = `https://wa.me/6591234567?text=Hi%20I%27m%20interested%20in%20the%20${encodeURIComponent(v.brand+' '+v.model)}%20(${v.id})`;
+      document.getElementById('whatsappLink').target = '_blank';
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal(){ document.getElementById('modal').style.display = 'none'; }
+
+    // Close modal on backdrop click
+    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
+
+    // Contact form (simple mailto fallback)
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('emailField').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !phone){ alert('Please provide your name and phone.'); return; }
+      const subject = encodeURIComponent(`Enquiry from website — ${name}`);
+      const body = encodeURIComponent(`Name: ${name}%0APhone: ${phone}%0AEmail: ${email}%0AMessage:%0A${message}`);
+      // mailto fallback
+      window.location.href = `mailto:sales@76cv.sg?subject=${subject}&body=${body}`;
+    });
+
+  </script>
+</body>
+</html>
